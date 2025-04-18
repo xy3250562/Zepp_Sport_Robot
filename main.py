@@ -48,15 +48,15 @@ def login(user, passwd):
         "token": "access"
     }
     response = requests.post(registrations_url, data=data, headers=headers, allow_redirects=False) # 发送注册请求并获取请求结果
-    code = None # 定义code变量
+    code = None # 定义登录code变量
     try:
-        location = response.headers["Location"] # 从返回数据中解码获取code
-        code = get_code(location)
+        location = response.headers["Location"] # 从返回数据中解码获取location数据
+        code = get_code(location) # 从location数据中解码获取登录code
     except Exception as err:
         print(response.text)
         print(err)
         return None, None
-    print(f'账号{user}获取code成功,code={code}')
+    print(f'账号{user}获取登录code成功')
     login_url = "https://account.huami.com/v2/client/login" # 定义登录url
     data = {
         "app_name": "com.xiaomi.hm.health",
