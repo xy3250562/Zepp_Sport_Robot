@@ -35,7 +35,7 @@ def get_app_token(login_token):
 # 登录
 def login(user, passwd):
     if not re.search(r'@(.*?)\.com', user): # 判断账号是否为邮箱
-        user = '+86'+user
+        user = '+86'+user # 如果账号非邮箱，则为手机号，在前方加上国家区号
     registrations_url = f"https://api-user.huami.com/registrations/{user}/tokens" # 定义注册url
     headers = {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
