@@ -114,20 +114,20 @@ if __name__ == "__main__":
         #['账号2', '密码2', 步数2],
     ]
     for i in account:
-        step = i[2]
+        step = i[1] # 这里数字填你加进了几组账号，例如这里我只加了一组账号，就填1
         # 若步数为空出则采用随机取步数方案
         if not step:
             step = random.randint(RandomMin, RandomMax) # 在指定范围内随机取一个步数
 
-        login_token, userid = login(i[0], i[1])
+        login_token, userid = login(i[0], i[1]) # 登录
         if not login_token:
             print('登录失败')
             continue
 
-        app_token = get_app_token(login_token)
+        app_token = get_app_token(login_token) # 获取app_token
         if not app_token:
             continue
 
-        result = change_steps(i[0], userid, app_token, str(step))
+        result = change_steps(i[0], userid, app_token, str(step)) # 修改步数并获取返回结果
         if not result:
             continue
