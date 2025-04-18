@@ -34,7 +34,7 @@ def get_app_token(login_token):
 
 # 登录
 def login(user, passwd):
-    if not re.search(r'@(.*?)\.com', user):
+    if not re.search(r'@(.*?)\.com', user): # 判断账号是否为邮箱
         user = '+86'+user
     registrations_url = f"https://api-user.huami.com/registrations/{user}/tokens" # 定义注册url
     headers = {
@@ -57,6 +57,7 @@ def login(user, passwd):
         print(err)
         return None, None
     print(f'账号{user}获取登录code成功')
+
     login_url = "https://account.huami.com/v2/client/login" # 定义登录url
     data = {
         "app_name": "com.xiaomi.hm.health",
@@ -66,7 +67,7 @@ def login(user, passwd):
         "device_id": "2C8B4939-0CCD-4E94-8CBA-CB8EA6E613A1",
         "device_model": "phone",
         "grant_type": "access_token",
-        "third_name": "huami_phone" if not re.search(r'@(.*?)\.com', user) else "email"
+        "third_name": "huami_phone" if not re.search(r'@(.*?)\.com', user) else "email" # 判断账号是否为邮箱
     }
     try:
         res = requests.post(login_url, data=data, headers=headers).json()
