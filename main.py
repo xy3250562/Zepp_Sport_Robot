@@ -19,7 +19,8 @@ def get_code(location):
 
 # 获取app_token
 def get_app_token(login_token):
-    url = f"https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}" # 定义获取url
+    url = f"https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com" \
+          f"%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}" # 定义获取url
     headers = {
         'User-Agent': 'Mozilla/5.0 (Linux; Android 10; Mi 10 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.15 Mobile Safari/537.36'
     }
